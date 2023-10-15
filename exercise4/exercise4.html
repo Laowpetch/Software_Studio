@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html>
+
+<head></head>
+
+<body>
+    <div id="maincontainer"></div>
+    <script>
+
+        var main = document.getElementById("maincontainer");
+        var mainTopic = document.createElement("h2");
+        var minorTopic = document.createElement("h1");
+        var button = document.createElement("button");
+        var info = document.createElement("a");
+        var perInfo = document.createElement("a");
+        var div1 = document.createElement("div");
+        var div2 = document.createElement("div");
+        var worker;
+
+        document.body.onload = addElement;
+
+        function addElement() {
+            mainTopic.innerHTML = "Exercise 04: JavaScript&DOM";
+            main.appendChild(mainTopic);
+            main.appendChild(document.createElement("br"));
+
+            button.setAttribute("id", "time");
+            button.innerText = "Click me to display Date and time";
+            div1.appendChild(button);
+            main.appendChild(div1);
+
+            main.appendChild(document.createElement("br"));
+            button.setAttribute("id", "inputBTN");
+            button.onclick = function () {
+                button.style.color = "lightgray";
+                button.style.backgroundColor = "red";
+                startWorker();
+            };
+
+            info.innerHTML = "Personal info";
+            info.style.textDecoration = "underline";
+            info.style.width = "fit-content";
+            info.href = "#";
+            info.style.color = "hotpink";
+            main.appendChild(info);
+
+            info.onmouseover = function () {
+                info.style.color = "blue";
+                info.style.backgroundColor = "yellow";
+            };
+            info.onmouseout = function () {
+                info.style.color = "hotpink";
+                info.style.backgroundColor = "white";
+            };
+            info.onclick = function () {
+                openPersonalInfo();
+            };
+
+            perInfo.setAttribute("id", "perInfo");
+            perInfo.style.display = "none";
+
+            var nameID = document.createTextNode("Pachara Laowpetch, ID : 63010629");
+            var subject = document.createTextNode("Subject : SOFTWARE STUDIO");
+            var semester = document.createTextNode("Semester : 1");
+            var ul = document.createElement("ul");
+            var l1 = document.createElement("li");
+            var l2 = document.createElement("li");
+            var l3 = document.createElement("li");
+
+            l1.appendChild(nameID);
+            l2.appendChild(subject);
+            l3.appendChild(semester);
+            ul.appendChild(l1);
+            ul.appendChild(l2);
+            ul.appendChild(l3);
+
+            perInfo.appendChild(ul);
+
+            function openPersonalInfo() {
+                var open = document.getElementById("perInfo");
+                if (open.style.display == "none") {
+                    open.style.display = "block";
+                } else {
+                    open.style.display = "none";
+                }
+            }
+
+            div2.appendChild(perInfo);
+            main.appendChild(div2);
+
+            minorTopic.innerHTML = "Snapshots";
+            main.appendChild(minorTopic);
+
+            var picList = document.createElement("ul");
+
+            var picChild1 = document.createElement("li");
+            var picLink1 = document.createElement("a");
+            picLink1.href = "#";
+            picLink1.style.color = "blue"
+            picLink1.textContent = "Fireworks";
+
+            var picChild2 = document.createElement("li");
+            var picLink2 = document.createElement("a");
+            picLink2.href = "#";
+            picLink2.style.color = "blue";
+            picLink2.textContent = "Crest";
+
+            var picChild3 = document.createElement("li");
+            var picLink3 = document.createElement("a");
+            picLink3.href = "#";
+            picLink3.style.color = "blue"
+            picLink3.textContent = "Action";
+
+            var picChild4 = document.createElement("li");
+            var picLink4 = document.createElement("a");
+            picLink4.href = "#";
+            picLink4.style.color = "blue"
+            picLink4.textContent = "Buffalo";
+
+            picLink1.onclick = function () {
+                var existingPic = main.getElementsByTagName("img")[0];
+                if (existingPic) {
+                    main.removeChild(existingPic);
+                }
+                var img = document.createElement("img");
+                img.src =
+                    "https://cdn.britannica.com/82/203482-050-E2ABDA79/People-fireworks.jpg";
+                img.width = "600";
+                img.height = "600";
+                img.alt = "Firework Image";
+                main.appendChild(img);
+            };
+
+            picLink2.onclick = function () {
+                var existingPic = main.getElementsByTagName("img")[0];
+                if (existingPic) {
+                    main.removeChild(existingPic);
+                }
+                var img = document.createElement("img");
+                img.src =
+                    "https://img.freepik.com/free-vector/premium-quality-product-golden-label-design_1017-12393.jpg?t=st=1694332657~exp=1694333257~hmac=88748c0e5c8091ee538e5425489528af08af4eb5f334bcee1fb5aa3ec2387149";
+                img.width = "600";
+                img.height = "600";
+                img.alt = "Crest Image";
+                main.appendChild(img);
+            };
+
+            picLink3.onclick = function () {
+                var existingPic = main.getElementsByTagName("img")[0];
+                if (existingPic) {
+                    main.removeChild(existingPic);
+                }
+                var img = document.createElement("img");
+                img.src =
+                    "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ee/Mookie_Betts_hitting_the_ball_%2836478781664%29.jpg/640px-Mookie_Betts_hitting_the_ball_%2836478781664%29.jpg";
+                img.width = "700";
+                img.height = "500";
+                img.alt = "Action Image";
+                main.appendChild(img);
+            };
+
+            picLink4.onclick = function () {
+                var existingPic = main.getElementsByTagName("img")[0];
+                if (existingPic) {
+                    main.removeChild(existingPic);
+                }
+                var img = document.createElement("img");
+                img.src =
+                    "https://www.awf.org/sites/default/files/styles/species_image/public/2020-04/SpeciesPage_AfricanBuffalo02_Challenges.jpg?h=29c6c1f6&itok=vplUlhO_";
+                img.width = "600";
+                img.height = "600";
+                img.alt = "Buffalo  Image";
+                main.appendChild(img);
+            };
+
+            picChild1.appendChild(picLink1);
+            picChild2.appendChild(picLink2);
+            picChild3.appendChild(picLink3);
+            picChild4.appendChild(picLink4);
+            picList.appendChild(picChild1);
+            picList.appendChild(picChild2);
+            picList.appendChild(picChild3);
+            picList.appendChild(picChild4);
+            main.append(picList);
+            main.appendChild(document.createElement("br"));
+
+            var img = document.createElement("img");
+            img.src =
+                "https://www.ce.kmitl.ac.th/api/main/banner/download/1";
+            img.alt = "kmitl";
+            img.width = "700";
+            img.height = "300";
+            main.appendChild(img);
+
+        }
+
+        function startWorker() {
+
+            button.style.position = "fixed";
+            button.style.right = "0";
+            button.style.top = "0";
+            button.style.width = "355px";
+            button.style.textAlign = "center";
+            button.style.border = "solid black";
+
+            if (typeof Worker !== "undefined") {
+                if (typeof worker == "undefined") {
+                    worker = new Worker("exercise4.js");
+                }
+                worker.postMessage("start");
+                button.onclick = function () {
+                    button.style.position = "static";
+                    stopWorker();
+                    button.onclick = function () {
+                        button.style.display = "block";
+                        startWorker();
+                    };
+                };
+
+                worker.addEventListener("message", function (event) {
+                    button.innerText = event.data;
+                });
+
+                var bgColors = [
+                    "aqua",
+                    "red",
+                    "green",
+                    "blue",
+                    "pink",
+                    "lime",
+                ];
+
+                var textColors = ["gray",
+                    "lightgray",
+                    "lightgray",
+                    "lightgray",
+                    "gray",
+                    "gray",];
+
+                var currentColor = 1;
+                function changeColor() {
+                    currentColor = (currentColor + 1) % textColors.length;
+                    button.style.color = textColors[currentColor];
+                    button.style.backgroundColor = bgColors[currentColor];
+                }
+
+                intervalID = setInterval(changeColor, 1000);
+
+            } else {
+                document.getElementById("time").innerHTML =
+                    "Sorry! No Web Worker support.";
+            }
+        }
+
+        function stopWorker() {
+            worker.postMessage("stop");
+            clearInterval(intervalID);
+            worker.terminate();
+            worker = undefined;
+        }
+    </script>
+</body>
+
+</html>
